@@ -1,5 +1,7 @@
 <template>
-  <main></main>
+  <main>
+
+  </main>
 </template>
 
 <script>
@@ -8,6 +10,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang = "scss">
+    main {
+        background-color: blue;
+        height: 90vh;
+    }
 
 </style>
