@@ -1,11 +1,11 @@
 <template>
   <header>
       <div class="container-max">
-        <div class="container">
+        
               <div class="container-logo">
-                  <span>logo</span>
+                   <!--     {{ logo }}       -->
               </div>
-        </div>
+        
       </div>
   </header>
 </template>
@@ -16,9 +16,28 @@ export default {
 }
 </script>
 
-<style lang = "scss">
+<style lang="scss" scoped>
 .container-max {
     height: 10vh;
     background-color: red;
+    display: flex;
+    align-items: center;
 }
+
+.container {
+    display: flex;
+    height: 10vh;
+}
+
+.container-logo {
+    width: 60px;
+    height: 60px;
+    background-color: yellow;
+    align-self: center;
+    border: 2px solid green;
+    border-radius: 50%;
+    margin-left: 3em;
+}
+
+
 </style>
