@@ -34,7 +34,7 @@ export default {
     height: 60px;
     background-color: yellow;
     align-self: center;
-    border: 2px solid green;
+    border: 10px solid rgb(7, 204, 7);
     border-radius: 50%;
     margin-left: 3em;
 }

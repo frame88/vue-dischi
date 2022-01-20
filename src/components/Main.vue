@@ -202,6 +202,23 @@ export default {
         height: 30vh;
         background-color: aqua;
         margin: 2em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .copertina {
+        width: 70%;
+        height: 45%;
+        background-color: blueviolet;
+        margin: 1em;
+    }
+
+    .titolo {
+        text-transform: uppercase;
+        font-weight: bold;
+        margin: 0.5em;
+        font-size: 130%;
     }
 
 
