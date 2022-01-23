@@ -1,226 +1,71 @@
 <template>
-  <main>
-      <div class="container-max-main">
-          <div class="container">
-              <div class="card">
-                  <!-- copertina -->
-                  <div class="copertina">
-                      <!-- {{ copertina }} -->
-                  </div>
-                  <!-- {{ title }} -->
-                  <span class="titolo">titolo</span>
-
-                  <!-- {{ artista }} -->
-                  <span class="artista">artista</span>
-                  
-                  <!-- {{ anno }} -->
-                  <span class="anno">anno</span>
-              </div>
-              <div class="card">
-                  <!-- copertina -->
-                  <div class="copertina">
-                      <!-- {{ copertina }} -->
-                  </div>
-                  <!-- {{ title }} -->
-                  <span class="titolo">titolo</span>
-
-                  <!-- {{ artista }} -->
-                  <span class="artista">artista</span>
-                  
-                  <!-- {{ anno }} -->
-                  <span class="anno">anno</span>
-              </div>
-              <div class="card">
-                  <!-- copertina -->
-                  <div class="copertina">
-                      <!-- {{ copertina }} -->
-                  </div>
-                  <!-- {{ title }} -->
-                  <span class="titolo">titolo</span>
-
-                  <!-- {{ artista }} -->
-                  <span class="artista">artista</span>
-                  
-                  <!-- {{ anno }} -->
-                  <span class="anno">anno</span>
-              </div>
-              <div class="card">
-                  <!-- copertina -->
-                  <div class="copertina">
-                      <!-- {{ copertina }} -->
-                  </div>
-                  <!-- {{ title }} -->
-                  <span class="titolo">titolo</span>
-
-                  <!-- {{ artista }} -->
-                  <span class="artista">artista</span>
-                  
-                  <!-- {{ anno }} -->
-                  <span class="anno">anno</span>
-              </div>
-              <div class="card">
-                  <!-- copertina -->
-                  <div class="copertina">
-                      <!-- {{ copertina }} -->
-                  </div>
-                  <!-- {{ title }} -->
-                  <span class="titolo">titolo</span>
-
-                  <!-- {{ artista }} -->
-                  <span class="artista">artista</span>
-                  
-                  <!-- {{ anno }} -->
-                  <span class="anno">anno</span>
-              </div>
-              <div class="card">
-                  <!-- copertina -->
-                  <div class="copertina">
-                      <!-- {{ copertina }} -->
-                  </div>
-                  <!-- {{ title }} -->
-                  <span class="titolo">titolo</span>
-
-                  <!-- {{ artista }} -->
-                  <span class="artista">artista</span>
-                  
-                  <!-- {{ anno }} -->
-                  <span class="anno">anno</span>
-              </div>
-              <div class="card">
-                  <!-- copertina -->
-                  <div class="copertina">
-                      <!-- {{ copertina }} -->
-                  </div>
-                  <!-- {{ title }} -->
-                  <span class="titolo">titolo</span>
-
-                  <!-- {{ artista }} -->
-                  <span class="artista">artista</span>
-                  
-                  <!-- {{ anno }} -->
-                  <span class="anno">anno</span>
-              </div>
-              <div class="card">
-                  <!-- copertina -->
-                  <div class="copertina">
-                      <!-- {{ copertina }} -->
-                  </div>
-                  <!-- {{ title }} -->
-                  <span class="titolo">titolo</span>
-
-                  <!-- {{ artista }} -->
-                  <span class="artista">artista</span>
-                  
-                  <!-- {{ anno }} -->
-                  <span class="anno">anno</span>
-              </div>
-              <div class="card">
-                  <!-- copertina -->
-                  <div class="copertina">
-                      <!-- {{ copertina }} -->
-                  </div>
-                  <!-- {{ title }} -->
-                  <span class="titolo">titolo</span>
-
-                  <!-- {{ artista }} -->
-                  <span class="artista">artista</span>
-                  
-                  <!-- {{ anno }} -->
-                  <span class="anno">anno</span>
-              </div>
-              <div class="card">
-                  <!-- copertina -->
-                  <div class="copertina">
-                      <!-- {{ copertina }} -->
-                  </div>
-                  <!-- {{ title }} -->
-                  <span class="titolo">titolo</span>
-
-                  <!-- {{ artista }} -->
-                  <span class="artista">artista</span>
-                  
-                  <!-- {{ anno }} -->
-                  <span class="anno">anno</span>
-              </div>
-              <div class="card">
-                  <!-- copertina -->
-                  <div class="copertina">
-                      <!-- {{ copertina }} -->
-                  </div>
-                  <!-- {{ title }} -->
-                  <span class="titolo">titolo</span>
-
-                  <!-- {{ artista }} -->
-                  <span class="artista">artista</span>
-                  
-                  <!-- {{ anno }} -->
-                  <span class="anno">anno</span>
-              </div>
-              <div class="card">
-                  <!-- copertina -->
-                  <div class="copertina">
-                      <!-- {{ copertina }} -->
-                  </div>
-                  <!-- {{ title }} -->
-                  <span class="titolo">titolo</span>
-
-                  <!-- {{ artista }} -->
-                  <span class="artista">artista</span>
-                  
-                  <!-- {{ anno }} -->
-                  <span class="anno">anno</span>
-              </div>
-          </div>
-      </div>
-
-        
-  </main>
+    <main>
+        <Search
+            @emitSearch="getOption($event)"
+         />
+        <div class="container p-5">
+            <div v-if="cards" class="row row-cols-5 cards g-3">
+                <Card
+                v-for="(card, index) in cards"
+                :key="index"
+                :card="card"
+                />
+            </div>
+        </div>
+    </main>
 </template>
 
 <script>
+import axios from 'axios';
+import Card from './Card.vue';
+import Search from './Search.vue';
 export default {
-
+    name: 'Main',
+    components: {
+        Card,
+        Search,
+    },
+    data (){
+        return{
+            cards : null,
+            option: null,
+            queryApi: "https://flynn.boolean.careers/exercises/api/array/music",
+        };
+    },
+    created(){
+        this.getAxios()
+    },
+    methods: {
+        getAxios: function(){
+            axios.get(this.queryApi)
+            .then((result) =>{
+                this.cards = result.data.response;
+                this.option = result.data.response;
+            })
+            .catch((error) =>{
+                console.log(error);
+            })
+        },
+        getOption: function(text){
+            this.cards = this.option;
+            if (text !="all"){
+                let newArray = this.cards.filter(element =>{
+                    if (element.genre.toLowerCase().includes(text.toLowerCase())){
+                        return true;
+                    }
+                })
+                this.cards = newArray;
+            }
+        }
+    }
 }
 </script>
 
 <style lang="scss" scoped>
-    .container-max-main {
-        background-color: blue;
-        height: 90vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    main{
+        background-color: #1E2D3B;
     }
-
-    .container {
-        justify-content: center;
-        flex-wrap: wrap;
+    img{
+        max-width: 100%;
     }
-
-    .card {
-        width: 10vw;
-        height: 30vh;
-        background-color: aqua;
-        margin: 2em;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .copertina {
-        width: 70%;
-        height: 45%;
-        background-color: blueviolet;
-        margin: 1em;
-    }
-
-    .titolo {
-        text-transform: uppercase;
-        font-weight: bold;
-        margin: 0.5em;
-        font-size: 130%;
-    }
-
-
-
 </style>

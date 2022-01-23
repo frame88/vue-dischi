@@ -1,43 +1,25 @@
 <template>
-  <header>
-      <div class="container-max">
-        
-              <div class="container-logo">
-                   <!--     {{ logo }}       -->
-              </div>
-        
-      </div>
-  </header>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2048px-Spotify_logo_without_text.svg.png" alt="">
+    </header>
 </template>
 
 <script>
 export default {
-
+    name: 'Header',
+    data (){
+        
+    }
 }
 </script>
 
 <style lang="scss" scoped>
-.container-max {
-    height: 10vh;
-    background-color: red;
-    display: flex;
-    align-items: center;
-}
-
-.container {
-    display: flex;
-    height: 10vh;
-}
-
-.container-logo {
-    width: 60px;
-    height: 60px;
-    background-color: yellow;
-    align-self: center;
-    border: 10px solid rgb(7, 204, 7);
-    border-radius: 50%;
-    margin-left: 3em;
-}
-
-
+    header{
+        background-color: #2E3A46;
+        padding: 20px;
+        img{
+            height: 40px;
+            //margin-bottom: 1em;
+        }
+    }
 </style>

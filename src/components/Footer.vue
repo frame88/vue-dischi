@@ -1,13 +1,15 @@
-<template>
-  <footer></footer>
+<t<template>
+    <footer></footer>
 </template>
 
 <script>
 export default {
-
+    name: 'Footer',
+    data (){
+        
+    }
 }
 </script>
 
 <style>
-
 </style>
